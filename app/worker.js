@@ -1,0 +1,11 @@
+const cron = require("node-cron")
+import { updateAllProjectMetadata } from "./sync"
+
+console.log("Worker started...");
+
+cron.schedule("0 */6 * * *", async () => {
+  await updateAllProjectMetadata();
+});
+
+// Optional: run immediately on startup
+updateAllProjectMetadata();
