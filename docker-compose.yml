@@ -1,0 +1,22 @@
+services:
+
+  app:
+    restart: always
+    build: ./app
+    container_name: myapp
+    env_files:
+      - .env
+    expose:
+      - "3000"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "./nginx/certs:/etc/nginx/certs"
+    depends_on:
+      - app
