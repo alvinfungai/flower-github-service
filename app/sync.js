@@ -1,13 +1,13 @@
-const { createClient } = require("@supabase/supabase-js");
+import { createClient } from "@supabase/supabase-js";
+import pLimit from "p-limit"
+import axios from "axios";
 
 const supabase = createClient(
     process.env.SUPABASE_URL,
     process.env.SUPABASE_SERVICE_ROLE_KEY
 )
 
-const pLimit = require("p-limit");
 const limit = pLimit(5);  // max 5 concurrent requests
-const axios = require("axios");
 
 async function updateAllProjectMetadata() {
   console.log("Fetching profiles with projects...");

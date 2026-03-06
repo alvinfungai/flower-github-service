@@ -1,4 +1,5 @@
-const cron = require("node-cron")
+import cron from "node-cron"
+
 import { updateAllProjectMetadata } from "./sync.js"
 
 console.log("Worker started...");
